@@ -48,7 +48,8 @@ foundations (`shared/ALL-001-frontend-foundations.md`).
 - Nothing is sent to the backend until the last step; then one call creates
   everything
 - The username (`username@handle`) is **not shown** during setup. It comes
-  from the email and is shown and changed later in Settings
+  from the person's name (or the email when the name has no Latin letters) and
+  is shown and changed later in Settings
 
 ### The steps
 
@@ -103,7 +104,7 @@ GET  /api/app/businesses          {"businesses":[]}
 GET  /api/app/handles/nova        {"handle":"nova","available":true,"reason":null}
 GET  /api/app/handles/login       {"handle":"login","available":false,"reason":"reserved"}
 GET  /api/app/handles/nova        {"handle":"nova","available":false,"reason":"taken"}
-POST /api/app/businesses   (201)  {"business":{"name":"Nova Café","handle":"nova","business_type":"coffee_shop","team_size":"alone","role":"owner","username":"owner","display_name":"Ahmed Nassem"}}
+POST /api/app/businesses   (201)  {"business":{"name":"Nova Café","handle":"nova","business_type":"coffee_shop","team_size":"alone","role":"owner","username":"ahmed","display_name":"Ahmed Nassem"}}
 Taken meanwhile           (409)   {"error":{"code":"handle_taken","field":"handle"}}
 A field is wrong          (400)   {"error":{"code":"invalid_input","field":"your_name"}}
 ```
