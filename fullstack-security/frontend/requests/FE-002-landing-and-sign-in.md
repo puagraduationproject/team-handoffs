@@ -50,8 +50,8 @@ foundations (`shared/ALL-001-frontend-foundations.md`).
 | The steps | `/login` (same page, step by step) | Code, set a password, password, Google account |
 | My account | `/account` | What the person has (already built as a plain page; restyle it) |
 
-Logged-in people (later, when sessions exist) skip the landing page and go to
-the app. Not needed now.
+Logged-in people skip the landing page and go to the app (sessions exist
+now; see My account below).
 
 ### Landing page
 
@@ -119,7 +119,7 @@ Only two steps to sign up with email:
 
 - `/account#ticket=...`: read the ticket, remove it from the address bar, then
   `POST /api/auth/ticket { ticket }` gives the account
-- `/?google=...` means it did not work: show the message for `not_ready`,
+- `/login?google=...` means it did not work: show the message for `not_ready`,
   `cancelled`, `expired` or `failed` (Texts below)
 
 ### My account
@@ -128,21 +128,27 @@ Shows email, name, phone, language, how they sign in (password, Google or
 both) and since when. Plus:
 
 - **Change password** (has a password): current password and the new one,
-  `POST /api/auth/password/change { email, old_password, new_password }`, or
+  `POST /api/auth/password/change { old_password, new_password }` (logged in), or
   **Use a code instead** (code step, then set a password with the ticket)
 - **Set a password** (Google only, no password yet): always the code step
   first, then set a password with the ticket. Never without the code
-- Until sessions exist, reloading the page goes back to the start. Say so in
-  small text, as the current page does
+- **Devices logged in** (`GET /api/auth/sessions`): browser, last used, IP,
+  "this device"; **Log out** on each other one (`POST /api/auth/sessions/end { id }`)
+  and **Log out of all other devices** (`POST /api/auth/sessions/end-others`)
+- **Log out** (`POST /api/auth/logout`)
+- Sessions exist now: people stay logged in (cookie, sent by the browser on its
+  own). On load, `GET /api/auth/me` says who is logged in (`401 not_logged_in`
+  when nobody is). A logged-in person who opens `/` or `/login` goes to the
+  app; one with no business yet goes to `/setup` (`FE-003`)
 
 ### Example responses
 
 ```json
 POST /api/auth/start            {"next":"code","retry_after_seconds":60}
 POST /api/auth/code/verify      {"ticket":"Gk3...","needs_password":true,"account":{...}}
-POST /api/auth/password/login   {"account":{"id":"...","email":"owner@example.com","name":null,"phone":null,"language":"ar","has_password":true,"has_google":false,"created_at":"2026-10-21T09:00:00.000Z"}}
-Any error                       {"error":{"code":"wrong_code","message":"for logs only","field":"code"}}
-Locked                          {"error":{"code":"locked","message":"...","retry_after_seconds":840}}
+POST /api/auth/password/login   {"account":{"email":"owner@example.com","name":null,"phone":null,"language":"ar","has_password":true,"has_google":false,"created_at":"2026-10-21T09:00:00.000Z"}}
+Any error                       {"error":{"code":"wrong_code","field":"code"}}
+Locked                          {"error":{"code":"locked","retry_after_seconds":840}}
 ```
 
 ### Texts (English; Arabic is the default language and still needed)
@@ -185,7 +191,9 @@ Locked                          {"error":{"code":"locked","message":"...","retry
 | `no_password` | The account has no password yet | This account has no password yet. Use a code or Google. |
 | `ticket_invalid` | The step took more than 10 minutes, or was done | This step has expired. Please start again. |
 | `outside_failed` | Sending the email failed | We couldn't send the email. Please try again. |
-| `limit_reached` | Too many requests | Too many tries. Please wait a little. |
+| `limit_reached` | Too many requests (also: more than 10 email checks an hour from one place) | Too many tries. Please wait a little. |
+| `not_logged_in` | No session, or it ended | You were logged out. Please log in again. |
+| `bad_origin` | The request came from another site | This request was blocked. Please reload the page. |
 | — | Network down | We couldn't reach the server. Check your connection. |
 | — | Anything else | Something went wrong. Please try again. |
 
@@ -209,3 +217,4 @@ Locked                          {"error":{"code":"locked","message":"...","retry
 ## Changes
 
 - 2026-10-21: Created.
+- 2026-10-21: Backend changes since it was sent: sessions exist (stay logged in, devices, log out on My account); password change needs no email; errors carry only `code` and `field` (no `message`); the account has no `id`; Google errors return to `/login?google=...`; new errors `not_logged_in`, `bad_origin`; after sign-up a person with no business goes to `/setup` (`FE-003`). (backend)
