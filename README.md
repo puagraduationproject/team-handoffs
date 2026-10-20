@@ -25,6 +25,7 @@ Each team folder has:
 
 Other folders:
 
+- `fullstack-security/frontend/designs/` has the frontend team's designs, one folder per request (`FE-003-business-setup-steps/`), as pictures plus a link to the design file. The format is in its `README.md`.
 - `templates/` has the files to copy when you start something new.
 - `shared/` is for things that belong to everyone: decisions all teams must follow, and requests with no single receiving team. Use `ALL` as the code and `to: everyone`.
 

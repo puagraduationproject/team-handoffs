@@ -20,4 +20,5 @@ Please include:
 ## Folders
 
 - `requests/`: what other teams need from us
+- `designs/`: our designs for the other teams to see, one folder per request (format in `designs/README.md`)
 - `notes/`: our informal docs
