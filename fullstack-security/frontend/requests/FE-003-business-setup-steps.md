@@ -79,19 +79,22 @@ to step 3 and show the message there.
 
 ### The kinds of business (step 4)
 
-| Value | Label | Hint |
-|-------|-------|------|
-| `coffee_shop` | Café or coffee shop | Drinks, snacks, tables |
-| `restaurant` | Restaurant or food | Meals, delivery, kitchen |
-| `bakery` | Bakery or sweets | Fresh goods, orders ahead |
-| `small_market` | Grocery or small market | Everyday goods, barcodes, debts |
-| `pharmacy` | Pharmacy | Medicines, expiry dates |
-| `clothing` | Clothes and fashion | Sizes, colors, seasons |
-| `electronics` | Phones and electronics | Devices, accessories, repairs |
-| `beauty` | Salon, barber or beauty | Services and bookings |
-| `services` | Other services | Repairs, cleaning, lessons, ... |
-| `online` | Online shop | You sell through social media or a website |
-| `other` | Something else | Start with the basics |
+| Value | Label |
+|-------|-------|
+| `coffee_shop` | Café or coffee shop |
+| `restaurant` | Restaurant or food |
+| `bakery` | Bakery or sweets |
+| `small_market` | Grocery or small market |
+| `pharmacy` | Pharmacy |
+| `clothing` | Clothes and fashion |
+| `electronics` | Phones and electronics |
+| `beauty` | Salon, barber or beauty |
+| `services` | Other services |
+| `online` | Online shop |
+| `other` | Something else |
+
+For now a type is only a name: it does not change what the app shows yet.
+Do not promise features next to each one (no "menu, tables, ..." hints).
 
 Eleven choices is a lot for a phone screen; how to show them is yours (a grid,
 icons, a list).
@@ -138,7 +141,7 @@ without it they answer `401` `not_logged_in`: go to `/login`.
 | Done, with a team | Inviting your team comes in a later step. You'll find it in Settings. |
 | Done button | Continue |
 
-The kinds of business and their hints are in the table above.
+The kinds of business are in the table above.
 
 ## Error codes
 
