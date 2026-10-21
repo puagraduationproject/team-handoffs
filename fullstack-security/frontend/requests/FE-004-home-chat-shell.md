@@ -45,6 +45,10 @@ foundations (`shared/ALL-001-frontend-foundations.md`).
 - **`/home`** on the test address. A logged-in person who opens `/` or
   `/login` goes there; one with no business yet goes to `/setup` (`FE-003`).
   Later the app moves to its own address, with Home at `/`
+- **The business setup ends here** (ALL-002 3.1): its done screen leads to
+  `/home`. Until Home is built, `app-web/staff/home/HomePage.tsx` is a
+  stand-in (a greeting and a link to My account) and the routing in
+  `staff/App.tsx` already sends people to `/home`: replace the stand-in
 - A thread (one conversation) gets its own address, for example
   `/home/t/{thread_id}`, so it can be reloaded and shared inside the business
 
@@ -96,6 +100,10 @@ The business is empty, so Home helps finish the setup in the chat:
   product**, **Connect Telegram**. Pressing one starts that step in the chat.
   Each button goes away once its step is done (the backend says which are
   left, see below)
+- **From the setup's done screen:** it has the same three buttons, which open
+  `/home?start=menu_photo`, `/home?start=add_product` and
+  `/home?start=connect_telegram`. Home starts that step in the chat, as if its
+  quick button was pressed
 
 ### Example responses (draft: the real routes come in a follow-up)
 
@@ -167,7 +175,8 @@ message and a fixed answer ("The AI is not connected yet").
 - [ ] The first-day version shows its greeting and the quick buttons
 - [ ] Built against the example responses; easy to switch to the real routes
 - [ ] Works on phone, tablet and laptop, in Arabic (right to left) and English
-- [ ] Built in `app-web/staff/home/`
+- [ ] Built in `app-web/staff/home/`, replacing the stand-in `HomePage.tsx`
+- [ ] `/home?start={key}` starts that first step in the chat
 
 ## Open questions
 
@@ -177,3 +186,6 @@ message and a fixed answer ("The AI is not connected yet").
 ## Changes
 
 - 2026-10-21: Created.
+- 2026-10-21: The business setup now ends on `/home` (ALL-002 3.1), with a
+  stand-in page until Home is built, and the done screen's buttons open
+  `/home?start=...` (backend).
