@@ -7,7 +7,7 @@ cc: [security]
 status: open
 priority: high
 created: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-22
 author: backend
 ---
 
@@ -212,9 +212,10 @@ Locked                          {"error":{"code":"locked","retry_after_seconds":
 ## Open questions
 
 - Who writes the Arabic texts (same open point as ALL-001)?
-- Product name and logo are not chosen yet; use "PUA Graduation Project" until then.
+- The product is named **EdaraPilot** (Arabic: إدارة بايلوت). Use it as the product name on every page. The logo is not chosen yet.
 
 ## Changes
 
 - 2026-10-21: Created.
 - 2026-10-21: Backend changes since it was sent: sessions exist (stay logged in, devices, log out on My account); password change needs no email; errors carry only `code` and `field` (no `message`); the account has no `id`; Google errors return to `/login?google=...`; new errors `not_logged_in`, `bad_origin`; after sign-up a person with no business goes to `/setup` (`FE-003`). (backend)
+- 2026-10-22: The product name is EdaraPilot (was "PUA Graduation Project" as a placeholder). (backend)
