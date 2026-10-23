@@ -1,3 +1,4 @@
+
 ---
 id: FE-010
 title: Inbox (customer chats: the AI or a person, take over, hand back)
@@ -10,6 +11,7 @@ created: 2026-10-23
 updated: 2026-10-23
 author: backend
 ---
+
 
 # Inbox (customer chats: the AI or a person, take over, hand back)
 
