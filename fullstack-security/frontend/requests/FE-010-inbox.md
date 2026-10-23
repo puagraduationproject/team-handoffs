@@ -1,4 +1,3 @@
-
 ---
 id: FE-010
 title: Inbox (customer chats: the AI or a person, take over, hand back)
