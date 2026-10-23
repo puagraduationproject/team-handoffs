@@ -7,7 +7,7 @@ cc: [agent, security]
 status: open
 priority: high
 created: 2026-10-21
-updated: 2026-10-21
+updated: 2026-10-23
 author: backend
 ---
 
@@ -65,8 +65,9 @@ the page.
 4. **The parts of the business**, each with a count when there is something
    waiting. Only what the person's role allows (design 17.2). For the owner:
    Inbox, Orders, Approvals, Customers, Menu and stock, Sales screen. Show the
-   first five; the rest under **More**. These pages are not built yet: the
-   links can go to a simple "coming soon" page
+   first five; the rest under **More**. Each opens as a full page with the AI
+   panel beside it (`FE-005`); the pages are `FE-006` to `FE-012`. Until one
+   is built, its link can go to a simple "coming soon" page
 5. **Pinned** and **Recent threads**
 6. **The person**, at the bottom: their name and `username@handle · Role`
    (`ahmed@nova · Owner`). Opens a menu: **My account** (`/account`, already
@@ -102,8 +103,14 @@ The business is empty, so Home helps finish the setup in the chat:
   left, see below)
 - **From the setup's done screen:** it has the same three buttons, which open
   `/home?start=menu_photo`, `/home?start=add_product` and
-  `/home?start=connect_telegram`. Home starts that step in the chat, as if its
+   `/home?start=connect_telegram`. Home starts that step in the chat, as if its
   quick button was pressed
+
+### The work panel
+
+What the AI makes or changes (a new price, a draft purchase order) opens in
+the **work panel** beside the chat, as a preview waiting for approval. It is
+described with the AI panel of the other pages in `FE-005`.
 
 ### Example responses (draft: the real routes come in a follow-up)
 
@@ -189,3 +196,6 @@ message and a fixed answer ("The AI is not connected yet").
 - 2026-10-21: The business setup now ends on `/home` (ALL-002 3.1), with a
   stand-in page until Home is built, and the done screen's buttons open
   `/home?start=...` (backend).
+- 2026-10-23: Each part of the sidebar opens as a full page with the AI panel
+  beside it, and Home gets the work panel for previews (`FE-005`; the pages
+  are `FE-006` to `FE-014`) (backend).
