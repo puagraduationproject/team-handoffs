@@ -11,7 +11,6 @@ updated: 2026-10-23
 author: backend
 ---
 
-
 # Inbox (customer chats: the AI or a person, take over, hand back)
 
 ## Summary
